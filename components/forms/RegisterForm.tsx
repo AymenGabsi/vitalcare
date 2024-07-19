@@ -120,7 +120,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             control={form.control}
             name="name"
             label="Full name"
-            placeholder="Aymen Gabsi"
+            placeholder="Aymen"
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
           />
