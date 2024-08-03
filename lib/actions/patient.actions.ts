@@ -100,8 +100,12 @@ export const getPatient = async (userId: string) => {
     const patients = await databases.listDocuments(
       DATABASE_ID!,
       PATIENT_COLLECTION_ID!,
-      [Query.equal("userId", [userId])]
+      [Query.contains("userId", userId)]
     );
+
+    if (patients.documents.length === 0) {
+      throw new Error("No patient found with the given userId.");
+    }
 
     return parseStringify(patients.documents[0]);
   } catch (error) {
@@ -109,5 +113,17 @@ export const getPatient = async (userId: string) => {
       "An error occurred while retrieving the patient details:",
       error
     );
+  }
+};
+
+export const getAllPatients = async () => {
+  try {
+    const patients = await databases.listDocuments(
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!
+    );
+    console.log("All patients:", patients);
+  } catch (error) {
+    console.error("An error occurred while retrieving all patients:", error);
   }
 };

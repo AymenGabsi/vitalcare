@@ -82,9 +82,6 @@ export const AppointmentForm = ({
           note: values.note,
         };
 
-        console.log("Appointment : ", appointment);
-        console.log("Patient Id : ", patientId);
-
         const newAppointment = await createAppointment(appointment);
 
         if (newAppointment) {
